@@ -35,4 +35,8 @@ const changePasswordSchema  = Joi.object({
     .required()
 
 })
-module.exports = {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema}
+const refreshTokenSchema = Joi.object({
+    email:Joi.string()
+    .required()
+})
+module.exports = {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema,refreshTokenSchema}

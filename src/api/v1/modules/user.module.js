@@ -14,7 +14,6 @@ const userShema = new Schema({
 })
 userShema.pre("save",function(next){
     const userEmail = this.email.split("@")[0];
-    console.log(SHA256(userEmail).toString().slice(1,10));
     this.username = this.username ? this.username : userEmail;
     this.password = this.password ? this.password : SHA256(userEmail).toString().slice(1,10);
     this.userid = this.userid ? this.userid : Date.now();

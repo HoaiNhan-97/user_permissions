@@ -3,15 +3,15 @@ POST http://localhost:5000/api/v1/user/register
 Content-Type: application/json
 
 {
-    "email":"nhan13@test.com"
+    "email":"nhan15@test.com"
 }
 ###
 POST http://localhost:5000/api/v1/user/veryfiotp
 Content-Type: application/json
 
 {
-    "otp":"860856",
-    "email":"nhan13@test.com"
+    "otp":"890517",
+    "email":"nhan15@test.com"
 }
 ###
 POST http://localhost:5000/api/v1/user/login
@@ -19,19 +19,28 @@ Content-Type: application/json
 
 {
     
-    "email":"nhan13@test.com",
-    "password":"2e2131630"
+    "email":"nhan15@test.com",
+    "password":"Hnhan123!@#112212"
 }
 
 ###
 POST http://localhost:5000/api/v1/user/changepassword
 Content-Type: application/json
-X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDkzZWEyYmVlYTFhNGE4YWI2NjllZSIsImlhdCI6MTY1ODQwNDUzM30.dwxymDvKlaq7YFKEEqJtO7SoNJ9pYwC2w6v5z90Zf2g
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MDkxMCwiZXhwIjoxNjU4NzUwOTIwfQ.EU-eIa-UPdZLr4JMz3PKFkXYle0iarAMXo4THySuLkc
 
 {
-    "email":"nhan12@test.com",
-    "old_password":"Hnhan123!@#11",
-    "new_password":"Hnhan123!@#1122",
-    "confirm_password":"Hnhan123!@#1122"
+    "email":"nhan15@test.com",
+    "old_password":"Hnhan123!@#112212",
+    "new_password":"Hnhan123!@#112212",
+    "confirm_password":"Hnhan123!@#112212"
 
+}
+
+###
+POST http://localhost:5000/api/v1/user/refreshtoken
+Content-Type: application/json
+X-Refresh-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MDk3MywiZXhwIjoxNjU4ODM3MzczfQ.D3vsf9o-d0wIYvJS4AxVhqfUWdW6jNCyzI5-G9hAlaY
+
+{
+    "email":"nhan15@test.com"
 }

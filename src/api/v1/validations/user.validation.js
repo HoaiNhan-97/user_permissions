@@ -1,4 +1,4 @@
-const {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema} = require("./schema/user.shema");
+const {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema,refreshTokenSchema} = require("./schema/user.shema");
 const createError = require("http-errors")
 
 const register = async(req,res,next) =>{
@@ -33,4 +33,12 @@ const changePassword = async(req,res,next) =>{
         next(createError.BadRequest(err.details[0].message));
     }
 }
-module.exports = {register,verifyotp,login,changePassword}
+const refreshtoken = async(req,res,next) =>{
+    try{
+        await refreshTokenSchema.validateAsync(req.body);
+        next();
+    }catch(err){
+        next(createError.BadRequest(err.details[0].message));
+    }
+}
+module.exports = {register,verifyotp,login,changePassword,refreshtoken}
