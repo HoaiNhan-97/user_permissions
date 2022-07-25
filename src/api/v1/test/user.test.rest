@@ -1,0 +1,37 @@
+###
+POST http://localhost:5000/api/v1/user/register
+Content-Type: application/json
+
+{
+    "email":"nhan13@test.com"
+}
+###
+POST http://localhost:5000/api/v1/user/veryfiotp
+Content-Type: application/json
+
+{
+    "otp":"860856",
+    "email":"nhan13@test.com"
+}
+###
+POST http://localhost:5000/api/v1/user/login
+Content-Type: application/json
+
+{
+    
+    "email":"nhan13@test.com",
+    "password":"2e2131630"
+}
+
+###
+POST http://localhost:5000/api/v1/user/changepassword
+Content-Type: application/json
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDkzZWEyYmVlYTFhNGE4YWI2NjllZSIsImlhdCI6MTY1ODQwNDUzM30.dwxymDvKlaq7YFKEEqJtO7SoNJ9pYwC2w6v5z90Zf2g
+
+{
+    "email":"nhan12@test.com",
+    "old_password":"Hnhan123!@#11",
+    "new_password":"Hnhan123!@#1122",
+    "confirm_password":"Hnhan123!@#1122"
+
+}
