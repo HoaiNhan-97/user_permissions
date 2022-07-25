@@ -43,7 +43,12 @@ const login = async (req,res,next) =>{
     try{
         const {email,password}= req.body;
         const user = await userService.login(email,password)
-        res.json({status:200,element:user});
+        // generate access token and refresh token 
+        const accessToken = await token.signAccessToken(user._id.toString());
+        const refreshToken = await token.signRefreshToken(user.id.toString())
+        // save refresh token to redis 
+        await redis.set(user._id.toString(),refreshToken);
+        res.json({status:200,element:user,accessToken,refreshToken});
     }catch(err){
         next(err);
     }
@@ -52,6 +57,7 @@ const changePassword = async (req,res,next) =>{
     try{
         const {email,old_password,new_password} = req.body;
         const user = await userService.findOne(email);
+        
         if(!user){
             next({status:401,message:"Unauthenticated!"});
             return;
@@ -88,4 +94,23 @@ const changePassword = async (req,res,next) =>{
         next(err);
     }
 }
-module.exports = {register,verifyotp,login,changePassword}
+
+const refreshToken = async (req,res,next) => {
+    try{
+        const {email} = req.body;
+        const user = await userService.findOne(email)
+        if(!user) return next({status:403,message:"unauthentication"});
+        if(user._id.toString() !== req.payload.id) return next({status:403,message:"unauthentication"});
+        // generate access token and refresh token 
+        const accessToken = await token.signAccessToken(user._id.toString());
+        const refreshToken = await token.signRefreshToken(user.id.toString())
+        // save refresh token to redis 
+        await redis.set(user._id.toString(),refreshToken);
+        res.json({status:200,element:{user,accessToken,refreshToken}})
+
+
+    }catch(err){
+        next(err);
+    }
+}
+module.exports = {register,verifyotp,login,changePassword,refreshToken}
