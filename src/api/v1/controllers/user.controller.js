@@ -113,4 +113,40 @@ const refreshToken = async (req,res,next) => {
         next(err);
     }
 }
-module.exports = {register,verifyotp,login,changePassword,refreshToken}
+const getProfile = async (req,res,next) =>{
+    try{
+        const {id} = req.params
+        if(id !== req.payload.id) return next({status:404,message:"bad request"});
+        const user = await userService.findById(id)
+        res.json({status:200,element:user});
+
+    }catch(err){
+        next(err);
+    }
+}
+const updateProfile = async(req,res,next) => {
+    try{
+
+        const {role,username} = req.body;
+        const {id} = req.params
+        if(id !== req.payload.id) return next({status:404,message:"bad request"});
+        const filter = {_id:id};
+
+        const update ={
+            role,
+            username
+        };
+        const options = {
+            new: true,
+            "fields": { "email":0, "role": 1 ,"username":1,"userid":1}, // select only this fields
+        }
+        // "fields": { "email":0}, not select this field
+        const updateUser = await userService.changePassword(filter,update,options);
+        res.json({status:200,element:updateUser});
+
+
+    }catch(err){
+        next(err);
+    }
+}
+module.exports = {register,verifyotp,login,changePassword,refreshToken,getProfile,updateProfile}

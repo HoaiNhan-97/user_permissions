@@ -1,3 +1,4 @@
+// register user 
 ###
 POST http://localhost:5000/api/v1/user/register
 Content-Type: application/json
@@ -5,14 +6,16 @@ Content-Type: application/json
 {
     "email":"nhan15@test.com"
 }
+// verify opt to create user 
 ###
-POST http://localhost:5000/api/v1/user/veryfiotp
+POST http://localhost:5000/api/v1/user/verifyotp
 Content-Type: application/json
 
 {
     "otp":"890517",
     "email":"nhan15@test.com"
 }
+// login
 ###
 POST http://localhost:5000/api/v1/user/login
 Content-Type: application/json
@@ -22,11 +25,11 @@ Content-Type: application/json
     "email":"nhan15@test.com",
     "password":"Hnhan123!@#112212"
 }
-
+// change password 
 ###
 POST http://localhost:5000/api/v1/user/changepassword
 Content-Type: application/json
-X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MDkxMCwiZXhwIjoxNjU4NzUwOTIwfQ.EU-eIa-UPdZLr4JMz3PKFkXYle0iarAMXo4THySuLkc
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MTE1MiwiZXhwIjoxNjU4NzUxMTYyfQ.c6XRBrnFK0URCU-ruhoSG4LVx176dzO0R0DaUiwdPn8
 
 {
     "email":"nhan15@test.com",
@@ -35,12 +38,29 @@ X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE
     "confirm_password":"Hnhan123!@#112212"
 
 }
-
+// refresh token 
 ###
 POST http://localhost:5000/api/v1/user/refreshtoken
 Content-Type: application/json
-X-Refresh-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MDk3MywiZXhwIjoxNjU4ODM3MzczfQ.D3vsf9o-d0wIYvJS4AxVhqfUWdW6jNCyzI5-G9hAlaY
+X-Refresh-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODc1MTIyOCwiZXhwIjoxNjU4NzUxMjM4fQ.eso8S6kTAgeHy5eIPjFLM1p-XQblv4reoQvsNwRi38M
 
 {
     "email":"nhan15@test.com"
+}
+
+// get profile user 
+###
+GET http://localhost:5000/api/v1/user/profile/62de7c5bd335a4ac7b023c5e
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODgzNjI4NiwiZXhwIjoxNjU4ODM5ODg2fQ.AvyN7dhz8GDn-VMlq7NmCLBejGZFTBzgQ1lcbxeheMM
+
+
+// set profile user 
+###
+POST http://localhost:5000/api/v1/user/profile/62de7c5bd335a4ac7b023c5e
+Content-Type: application/json
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZGU3YzViZDMzNWE0YWM3YjAyM2M1ZSIsImlhdCI6MTY1ODgzNjI4NiwiZXhwIjoxNjU4ODM5ODg2fQ.AvyN7dhz8GDn-VMlq7NmCLBejGZFTBzgQ1lcbxeheMM
+
+{
+    "role":"admin",
+    "username":"Nhan Nguyen"
 }
