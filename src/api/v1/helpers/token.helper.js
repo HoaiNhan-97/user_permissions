@@ -29,8 +29,6 @@ const verifyAccessToken = async (req,res,next) =>{
         const decoded = jwt.verify(token,process.env.SECERT_ACCESS_TOKEN);
         req.payload = decoded;
         next()
-        
-
     }catch(err){
         
         if(err.name === "TokenExpiredError"){

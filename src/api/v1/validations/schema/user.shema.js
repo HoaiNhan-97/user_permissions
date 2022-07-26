@@ -46,4 +46,11 @@ const updateProfileSchema =  Joi.object({
     .required()
     .min(3)
 })
-module.exports = {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema,refreshTokenSchema,updateProfileSchema}
+module.exports = {
+    registerSchema,
+    verifyotpSchema,
+    loginSchema,
+    changePasswordSchema,
+    refreshTokenSchema,
+    updateProfileSchema
+}

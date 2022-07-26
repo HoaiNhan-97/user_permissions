@@ -10,6 +10,7 @@ const set = async (key, value, options) => {
     throw new Error("Redis " + err.message);
   }
 };
+
 const get = async (key) => {
   try {
     await client.connect();
@@ -21,4 +22,5 @@ const get = async (key) => {
     throw new Error("Redis " + err.message);
   }
 };
+
 module.exports = {set,get};

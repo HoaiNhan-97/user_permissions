@@ -1,4 +1,5 @@
 "use strict";
+
 require("dotenv").config();
 const bcrypt = require('bcrypt');
 const hash = async(myPlaintextPassword, saltRounds = +process.env.BCRYPT_SALT) =>{

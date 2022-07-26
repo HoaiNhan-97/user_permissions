@@ -1,4 +1,11 @@
-const {registerSchema,verifyotpSchema,loginSchema,changePasswordSchema,refreshTokenSchema,updateProfileSchema} = require("./schema/user.shema");
+const {
+    registerSchema,
+    verifyotpSchema,
+    loginSchema,
+    changePasswordSchema,
+    refreshTokenSchema,
+    updateProfileSchema
+} = require("./schema/user.shema");
 const createError = require("http-errors")
 
 const register = async(req,res,next) =>{
@@ -52,4 +59,11 @@ const updateProfile = async(req,res,next) =>{
         next(createError.BadRequest(err.details[0].message));
     }
 }
-module.exports = {register,verifyotp,login,changePassword,refreshtoken,updateProfile}
+module.exports = {
+    register,
+    verifyotp,
+    login,
+    changePassword,
+    refreshtoken,
+    updateProfile
+}

@@ -94,7 +94,6 @@ const changePassword = async (req,res,next) =>{
         next(err);
     }
 }
-
 const refreshToken = async (req,res,next) => {
     try{
         const {email} = req.body;
