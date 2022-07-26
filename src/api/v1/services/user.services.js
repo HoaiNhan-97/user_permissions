@@ -1,5 +1,4 @@
 "use strict";
-const {ObjectId} = require("mongoose").Types;
 const myError = require("../helpers/error.helper");
 const _User = require("../modules/user.module");
 const otp = require("../services/otp.services")
@@ -14,12 +13,10 @@ const create = async (email) => {
     }
     
 }
-const findById = async (id) => {
+const find = async (email) => {
     try{
-        if(!ObjectId.isValid(id)) throw new myError({status:404,message:"bad request"})
-        const user = await _User.findById(id,'email role username userid');
-        if(!user) throw  new myError({status:404,message:"user not found"})
-        return user;
+        const userExist = await _User.findOne({email});
+        return userExist;
     }catch(err){
         throw err
     }
@@ -62,4 +59,4 @@ const changePassword = async (filter,update,potions) =>{
         throw err;
     }
 }
-module.exports = {create,findOne,login,changePassword,findById};
+module.exports = {create,find,findOne,login,changePassword};
